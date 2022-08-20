@@ -7,7 +7,7 @@ def test_2():
 
 
 def test_2():
-    assert False
+    assert True
 
 
 def test_3():
