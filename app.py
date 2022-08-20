@@ -10,6 +10,7 @@ app = Flask(
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
 
+
 @app.route("/delete/<int:task_id>", methods=["POST"])
 def delete(task_id):
     """recieved post requests for entry deletem"""
