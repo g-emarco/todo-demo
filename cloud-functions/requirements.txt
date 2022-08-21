@@ -1,0 +1,2 @@
+google-cloud-secret-manager==2.12.2
+slack-sdk==3.18.1

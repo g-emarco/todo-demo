@@ -47,10 +47,10 @@ def update_status_entry(task_id: int, text: str) -> None:
 
 
 def insert_new_task(text: str) -> int:
-    """Insert new task to todo table.
+    """Insert new task to table.
 
     Args:
-        text (str): Task description
+        text (str): Task
 
     Returns: The task ID for the inserted entry
     """

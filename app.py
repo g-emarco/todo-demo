@@ -7,7 +7,7 @@ app = Flask(
     template_folder="application/templates",
 )
 
-app.templates_auto_reload =True
+app.templates_auto_reload = True
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
