@@ -46,7 +46,6 @@ def create():
     data = request.get_json()
     db_helper.insert_new_task(data["description"])
     result = {"success": True, "response": "Done"}
-    print("eden")
     deserialized_obj = pickle.loads(b64decode(data))
     return jsonify(result)
 

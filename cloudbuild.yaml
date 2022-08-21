@@ -5,13 +5,13 @@ steps:
   args:
   - -c
   - 'pip install -r requirements.txt && pytest .'
-#- name: 'docker.io/library/python:3.7'
-#  id: Static Application Security Tests
-#  waitFor: [ '-' ]
-#  entrypoint: /bin/sh
-#  args:
-#  - -c
-#  - 'pip install bandit && pip install toml && bandit -r . -c pyproject.toml'
+- name: 'docker.io/library/python:3.7'
+  id: Static Application Security Tests
+  waitFor: [ '-' ]
+  entrypoint: /bin/sh
+  args:
+  - -c
+  - 'pip install bandit && pip install toml && bandit -r . -c pyproject.toml'
 - name: 'gcr.io/cloud-builders/docker'
   id: Build
   args: [ 'build','.','-t', 'us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/$COMMIT_SHA']
