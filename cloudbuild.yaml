@@ -31,7 +31,7 @@ steps:
     - |
       docker build . -t us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest \
       && docker push us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest \
-      && docker image inspect us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest --format '{{.Id}}' > image-digest.txt \
+      && docker image inspect us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest --format '{{index .RepoDigests 0}}' > image-digest.txt \
       && cat image-digest.txt
 
 # docker build . -t us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/$COMMIT_SHA \
@@ -48,10 +48,8 @@ steps:
       && /kritis/signer \
       -mode=check-only \
       -alsologtostderr \
-      -image=us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest \
+      -image=$(/bin/cat image-digest.txt) \
       -policy=image_vuln_policy.yaml
   waitFor: ['Build']
 images:
 - 'us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest'
-# - 'us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/$COMMIT_SHA'
-
