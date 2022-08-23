@@ -47,6 +47,6 @@ steps:
 #      -alsologtostderr \
 #      -image=$(/bin/cat image-digest.txt) \
 #      -policy=image_vuln_policy.yaml
-  waitFor: ['Build']
+#  waitFor: ['Build']
 images:
 - 'us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest'
