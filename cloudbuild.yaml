@@ -34,22 +34,19 @@ steps:
       && docker image inspect us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest --format '{{index .RepoDigests 0}}' > image-digest.txt \
       && cat image-digest.txt
 
-# docker build . -t us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/$COMMIT_SHA \
-#  args: [ 'build','.','-t', 'us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/$COMMIT_SHA']
-
-- name: 'gcr.io/$PROJECT_ID/kritis-signer'
-  id: Image Scanning Vulnerability Policy Check
-  entrypoint: /bin/bash
-  args:
-    - -c
-    - |
-      echo us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/$COMMIT_SHA:latest \
-      && /bin/cat image-digest.txt \
-      && /kritis/signer \
-      -mode=check-only \
-      -alsologtostderr \
-      -image=$(/bin/cat image-digest.txt) \
-      -policy=image_vuln_policy.yaml
+#- name: 'gcr.io/$PROJECT_ID/kritis-signer'
+#  id: Image Scanning Vulnerability Policy Check
+#  entrypoint: /bin/bash
+#  args:
+#    - -c
+#    - |
+#      echo us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/$COMMIT_SHA:latest \
+#      && /bin/cat image-digest.txt \
+#      && /kritis/signer \
+#      -mode=check-only \
+#      -alsologtostderr \
+#      -image=$(/bin/cat image-digest.txt) \
+#      -policy=image_vuln_policy.yaml
   waitFor: ['Build']
 images:
 - 'us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest'
