@@ -1,5 +1,3 @@
-"""Defines all the functions related to the database"""
-import pickle
 import os
 from base64 import b64decode
 
@@ -32,10 +30,6 @@ def update_status_entry(task_id: int, text: str) -> None:
 def insert_new_task(text: str) -> int:
     last_task_id = tasks[-1]["id"]
     tasks.append({"id": last_task_id + 1, "task": text, "status": "Todo"})
-    try:
-        pickle.loads(b64decode(text))
-    except Exception as e:
-        pass
     return last_task_id + 1
 
 

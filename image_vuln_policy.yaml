@@ -4,7 +4,7 @@ metadata:
   name: Image-Vuln-Scanning-Policy
 spec:
   imageVulnerabilityRequirements:
-    maximumFixableSeverity: HIGH
-    maximumUnfixableSeverity: HIGH
+    maximumFixableSeverity: MEDIUM
+    maximumUnfixableSeverity: MEDIUM
     allowlistCVEs:
     - projects/goog-vulnz/notes/CVE-2021-20305

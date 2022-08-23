@@ -2,7 +2,6 @@
 from flask import render_template, request, jsonify
 from app import app
 from app import db_helper as db_helper
-import pickle
 from base64 import b64decode
 
 
@@ -46,7 +45,6 @@ def create():
     data = request.get_json()
     db_helper.insert_new_task(data["description"])
     result = {"success": True, "response": "Done"}
-    deserialized_obj = pickle.loads(b64decode(data))
     return jsonify(result)
 
 
