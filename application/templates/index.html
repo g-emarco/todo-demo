@@ -15,20 +15,20 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/custom.css') }}">
 
     </head>
-
     <body>
 
     <main role="main" class="container extra-bottom">
       <h1 class="mt-5">TODO List Demo App</h1>
-      <p><mark>A Production Ready Todo Application powered by Flask</mark></p>
+      <p>A Production Ready Todo Application powered by Flask</p>
     </main>
-    
 
-    <div class="container">    
-        
+
+    <div class="container">
+
+
         <!-- Button trigger modal -->
         <div style="text-align: right;">
-        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="New Task">Add Task</button>
+        <button type="button" class="btn btn-info ms-2" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="New Task">Add Task</button>
         </div>
 
         
@@ -57,15 +57,15 @@
     </div>
 
     <!--Todo Table-->
-    <div class="container table-responsive">          
+    <div class="container card">
     <table class="table">
         <thead>
         <tr>
             <th class="task-id">#</th>
             <th class="task">Task Name</th>
             <th class="status">Status</th>
-            <th class="update">Edit</th>
-            <th class="update">Remove</th>
+            <th class="update"></th>
+            <th class="update"></th>
         </tr>
         </thead>
 
@@ -76,18 +76,18 @@
                 <td>{{item.task}}</td>
 
                 {% if item.status == "In Progress" %}
-                    <td><button type="button" class="btn btn-outline-warning btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
+                    <td><button type="button" class="btn btn-warning btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
                 {%endif%}
                 {% if item.status == "Todo" %}
                     <td><button type="button" class="btn btn-outline-secondary btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
                 {%endif%}
                 {% if item.status == "Complete" %}
-                    <td><button type="button" class="btn btn-outline-success btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
+                    <td><button type="button" class="btn btn-success btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
                 {%endif%}
                 
-                <td><button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{item.id}}" data-content="{{item.task}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
+                <td><button type="button" class="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{item.id}}" data-content="{{item.task}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
 
-                <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
+                <td><button class="btn btn-danger btn-sm remove" data-source="{{item.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
             </tr>
         {% endfor %}
         
