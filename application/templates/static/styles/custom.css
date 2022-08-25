@@ -36,17 +36,23 @@ hr {
     margin: auto;
 
 }
+.table{
+    table-layout: fixed
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all
 
+}
 .table td {
     text-align: left;
     vertical-align: middle;
+    table-width: fixed
 }
 
 .table tr {
     text-align: center;
     vertical-align: middle;
     background-color: #fff;
-
 }
 
 /* bootstrap modifications */
@@ -75,6 +81,7 @@ hr {
 .update {
     width: 10%;
 }
+
 
 .gradient-custom {
 background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%),
