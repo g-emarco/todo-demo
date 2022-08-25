@@ -1,4 +1,4 @@
-# GCP CI/CD Shift left demo and tutorial
+# GCP CI/CD Shift left security demo and tutorial
 This demo demonstrates shift left security pratice with Google Cloud Build, Cloud Run, Artifact Registry, Container Analysis, Bandit and Kritis, slack integraiton. 
 
 ## Run application locally
