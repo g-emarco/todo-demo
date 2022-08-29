@@ -11,8 +11,22 @@ From root directory
 flask run
 ```
 
+## Cloud Build CI/CD Setup
 
-## Set up the Kritis Signer custom builder (prerequiste for security policy enforcment build step) 
+Create a ```cloud-builds``` topic in pubsub (Cloud Build will publish here build results)
+```bash
+gcloud pubsub topics create cloud-builds
+```
+
+## Enable GCP relevant services API's 
+
+```bash
+gcloud services enable cloudbuild.googleapis.com   containerregistry.googleapis.com
+containerscanning.googleapis.com   cloudkms.googleapis.com
+```
+
+## Set up the Kritis Signer custom builder
+prerequiste for security policy enforcment build step) 
 Refrenced from [Binary Authorization attestations tutorial](https://cloud.google.com/binary-authorization/docs/creating-attestations-kritis).
 
 
@@ -30,3 +44,21 @@ Build and register Kritis Signer custom builder
 ```bash
 gcloud builds submit . --config deploy/kritis-signer/cloudbuild.yaml
 ```
+
+## Cloud Build Slack CI/CD notification integration (Optional)
+
+Navigate to the ```cloud-functions/``` directory
+
+```bash
+cd cloud-functions
+```
+
+Deploy python Cloud function subsribed to ```cloud-builds``` topic created earler
+```bash
+gcloud functions deploy slack_integration
+--stage-bucket ${PROJECT_ID}_gcb-slack-integration --trigger-topic cloud-builds --runtime python38
+```
+
+
+
+
