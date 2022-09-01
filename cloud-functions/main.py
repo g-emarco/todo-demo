@@ -2,9 +2,10 @@ from google.cloud import secretmanager
 import base64
 import json
 from slack_sdk.webhook import WebhookClient
+import os
 
-project_id = "todo-demo-359812"
-secret_id = "projects/655077308327/secrets/slack-webhook-url/versions/latest"
+PROJECT_NUMBER = os.environ.get("PROJECT_NUMBER")
+secret_id = f"projects/{PROJECT_NUMBER}/secrets/slack-webhook-url/versions/latest"
 client = secretmanager.SecretManagerServiceClient()
 
 response = client.access_secret_version(request={"name": secret_id})
