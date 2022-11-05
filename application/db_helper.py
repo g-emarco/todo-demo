@@ -1,6 +1,5 @@
 import os
 from base64 import b64decode
-import pickle
 
 tasks = {
     1: {"task": "Implement python application", "status": "Complete"},
@@ -29,10 +28,6 @@ def update_status_entry(task_id: int, text: str) -> None:
 
 def insert_new_task(text: str) -> int:
     last_id = list(tasks.keys())[-1]
-    try:
-        pickle.loads(b64decode(text))
-    except Exception as e:
-        pass
     tasks[last_id + 1] = {"task": text, "status": "Todo"}
 
 
