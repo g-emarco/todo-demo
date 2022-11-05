@@ -1,3 +1,0 @@
-[tool.bandit]
-exclude_dirs = ["application/tests",]
-skips = ["B105", "B110", "B104",]

@@ -17,12 +17,6 @@ steps:
   args:
   - -c
   - 'pip install -r requirements.txt && pytest application/tests/test_e2e.py -v'
-- name: 'docker.io/library/python:3.7'
-  id: Static Application Security Tests
-  entrypoint: /bin/sh
-  args:
-  - -c
-  - 'pip install bandit && pip install toml && bandit -r . -c pyproject.toml'
 - name: 'gcr.io/cloud-builders/docker'
   id: Build
   entrypoint: bash
@@ -33,20 +27,5 @@ steps:
       && docker push us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest \
       && docker image inspect us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest --format '{{index .RepoDigests 0}}' > image-digest.txt \
       && cat image-digest.txt
-
-- name: 'gcr.io/$PROJECT_ID/kritis-signer'
-  id: Image Scanning Vulnerability Policy Check
-  entrypoint: /bin/bash
-  args:
-    - -c
-    - |
-      echo us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/$COMMIT_SHA:latest \
-      && /bin/cat image-digest.txt \
-      && /kritis/signer \
-      -mode=check-only \
-      -alsologtostderr \
-      -image=$(/bin/cat image-digest.txt) \
-      -policy=image_vuln_policy.yaml
-  waitFor: ['Build']
 images:
 - 'us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest'
