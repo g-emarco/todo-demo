@@ -1,4 +1,4 @@
-FROM python:3.8-buster@sha256:c60308189ecec21e11a8ec842393c0ba6015de05e2d7e1aeafaaeb7bd41fe115
+FROM python:3.9
 WORKDIR /app
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
