@@ -17,6 +17,12 @@ steps:
   args:
   - -c
   - 'pip install -r requirements.txt && pytest application/tests/test_e2e.py -v'
+- name: 'docker.io/library/python:3.7'
+  id: Static Application Security Tests
+  entrypoint: /bin/sh
+  args:
+  - -c
+  - 'pip install bandit && pip install toml && bandit -r . -c pyproject.toml'
 - name: 'gcr.io/cloud-builders/docker'
   id: Build
   entrypoint: bash
