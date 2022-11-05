@@ -33,7 +33,6 @@ steps:
       && docker push us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest \
       && docker image inspect us-east1-docker.pkg.dev/$PROJECT_ID/todo-demo2/todo-app-image:latest --format '{{index .RepoDigests 0}}' > image-digest.txt \
       && cat image-digest.txt
-
 - name: 'gcr.io/$PROJECT_ID/kritis-signer'
   id: Image Scanning Vulnerability Policy Check
   entrypoint: /bin/bash
