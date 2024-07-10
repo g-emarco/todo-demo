@@ -16,3 +16,4 @@ pyparsing==3.0.9
 pytest==7.1.2
 tomli==2.0.1
 Werkzeug==2.2.2
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
